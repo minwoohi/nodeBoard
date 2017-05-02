@@ -36,7 +36,7 @@
         if( locals.selectedItem ){ // selectedItem 있는 경우
     %>
     <div id="detail">
-        <form method="get" action="/memo/update/<%= selectedItem.id %>" >
+        <form method="post" action="/memo/update/<%= selectedItem.id %>" >
             <input type="text" name="subject" value=" <%= selectedItem.subject %>"/> <br>
             <textarea name="content" >
                 <%= selectedItem.memo %>

@@ -25,7 +25,7 @@ const items = [
         'memo' : '두번째 메모',
         id : index++
     }
-]
+];
 
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -99,7 +99,7 @@ app.get('/write', function(request, response){
     });
 });
 
-app.get('/memo/update/:id', function(request, response){
+app.post('/memo/update/:id', function(request, response){
     let id = request.params.id;
 
     console.log("memo/update/"+id);
@@ -108,7 +108,10 @@ app.get('/memo/update/:id', function(request, response){
     item.subject = request.body.subject;
     item.memo = request.body.content;
 
-    items.push(item);
+    console.log('subject : ' + item.subject);
+    console.log('memo : ' + item.memo);
+
+    items[id] = item;
 
     response.type('text/html');
     response.redirect('/memo');
