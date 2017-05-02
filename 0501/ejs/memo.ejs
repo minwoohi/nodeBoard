@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>메모</title>
+</head>
+<style>
+    #detail {
+        text-align: center;
+    }
+
+    #memo {
+
+    }
+
+    #list {
+
+    }
+</style>
+<body>
+    <div id="memo">
+    <span>메모</span>
+    <a href="/write">새글쓰기</a><hr/>
+    </div>
+    <div id="list">
+    <table>
+        <% for (let item of items) { %>
+        <tr>
+            <td><a href="/memo/<%= item.id %>"><%= item.subject %></a></td>
+        </tr>
+        <% } %>
+    </table>
+    </div>
+
+    <%
+        if( locals.selectedItem ){ // selectedItem 있는 경우
+    %>
+    <div id="detail">
+        <form method="get" action="/memo/update/<%= selectedItem.id %>" >
+            <input type="text" name="subject" value=" <%= selectedItem.subject %>"/> <br>
+            <textarea name="content" >
+                <%= selectedItem.memo %>
+            </textarea>
+            <input type="image" src="/img/ic_build_black_24dp_1x.png"/>
+        </form>
+
+       <form method="get" action="/memo/delete/<%= selectedItem.id %>">
+            <input type="image" src="/img/ic_delete_black_24px.svg"/>
+        </form>
+    </div>
+    <% } else {}%>
+
+</body>
+</html>
